@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title> Tạo Hiệu Ứng Hover Cho Thanh Menu Bằng HTML, CSS, JS</title>
+     <link href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2:wght@400;700&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="style.css">
+ </head>
+ <body>
+   <nav class="nav">
+         <a href="#" class="nav-item is-active" active-color="DarkSlateBlue">Trang Chủ</a>
+         <a href="#" class="nav-item" active-color="DarkKhaki">Về Chúng Tôi</a>
+         <a href="#" class="nav-item" active-color="DeepPink">Liên Hệ</a>
+         <a href="#" class="nav-item" active-color="LimeGreen">Dự Án</a>
+         <span class="nav-indicator"></span>
+   </nav>
+ </body>
+ </html>
+ <script>
+    var indicator = document.querySelector('.nav-indicator');
+    var items = document.querySelectorAll('.nav-item');
+   function handleIndicator(el) {
+        items.forEach(function (item) {
+            item.classList.remove('is-active');
+            item.removeAttribute('style');
+        });
+        indicator.style.width = "".concat(el.offsetWidth, "px");
+        indicator.style.left = "".concat(el.offsetLeft, "px");
+        indicator.style.backgroundColor = el.getAttribute('active-color');
+        el.classList.add('is-active');
+        el.style.color = el.getAttribute('active-color');
+    }
+   items.forEach(function (item, index) {
+        item.addEventListener('click', function (e) {
+            handleIndicator(e.target);
+        });
+        item.classList.contains('is-active') && handleIndicator(item);
+    });
+</script>
